@@ -1,6 +1,6 @@
 # SruSrwMaker
 
-ruSrw
+SruSrw
 
 ## Installation
 
