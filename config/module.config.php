@@ -63,11 +63,18 @@ return [
         'AdminModule' => [
             [
                 'label' => 'Sru Srw Maker',
-                'route' => 'admin/sru-srw-maker/map-import',
+                'route' => 'admin/sru-srw-maker',
                 'resource' => 'SruSrwMaker\Controller\Admin\Index',
                 'controller' => 'Index',
-                'action' => 'map-import',
+                'action' => 'index',
                 'pages' => [
+                    [
+                        'label' => 'Import Sru Srw Map',
+                        'route' => 'admin/sru-srw-maker/map-import',
+                        'resource' => 'SruSrwMaker\Controller\Admin\Index',
+                        'controller' => 'Index',
+                        'action' => 'map-import',
+                    ]
                 ],
             ],
         ],

@@ -18,6 +18,9 @@ class IndexController extends AbstractActionController
         $view = new ViewModel();
         $form = $this->getForm(ImportForm::class);
         $view->form = $form;
+        $response = $this->api()->search('srw_maps', ['sort_by' => 'id', 'sort_order' => 'asc']);
+        $maps = $response->getContent();
+        $view->setVariable('maps', $maps);
         return $view;
     }
     public function mapImportAction()

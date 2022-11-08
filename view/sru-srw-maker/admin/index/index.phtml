@@ -4,12 +4,19 @@ $form->prepare();
 $escapeHtml = $this->plugin('escapeHtml');
 ?>
 
-<?php echo $this->pageTitle($this->translate(' Srw Map Import'), 1, $this->translate('Sru Srw Maker')); ?>
+<?php echo $this->pageTitle($this->translate('Sru Srw Map List'), 1, $this->translate('Sru Srw Map Maker')); ?>
 
-<?php echo $this->form()->openTag($form); ?>
-<fieldset id='page-actions'>
-    <button type="submit"><?php echo $this->translate('Submit'); ?></button>
-</fieldset>
-<?php echo $this->formCollection($form, false); ?>
-
-<?php echo $this->form()->closeTag($form); ?>
+<table style="border: solid 1px; width: 60%;">
+    <tr>
+        <th style="border-right: solid 1px; width:70px;text-align:right;">ID</th>
+        <th style="border-right: solid 1px";>local property</th>
+        <th>standard property</th>
+    </tr>
+<?php foreach ($maps as $map): ?>
+    <tr>
+        <td style="border-right: solid 1px; border-top: solid 1px; width:470px;text-align:right;"><?php echo $map->id(); ?></td>
+        <td style="border-right: solid 1px; border-top: solid 1px;"><?php echo $map->localProperty(); ?></td>
+        <td style="border-top: solid 1px;"><?php echo $map->standardProperty(); ?></td>
+    </tr>
+<?php endforeach;?>
+</table>
