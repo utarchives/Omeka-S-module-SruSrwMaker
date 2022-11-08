@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="shift_jis"?>
+<wsdl:definitions 
+targetNamespace="http://www.loc.gov/zing/srw/srw-sample-service/" 
+xmlns:apachesoap="http://xml.apache.org/xml-soap" 
+xmlns:impl="http://www.loc.gov/zing/srw/srw-sample-service/" 
+xmlns:intf="http://www.loc.gov/zing/srw/srw-sample-service/" 
+xmlns:tns1="http://www.loc.gov/zing/srw/" 
+xmlns:tns2="http://www.loc.gov/zing/cql/xcql/" 
+xmlns:tns3="http://www.loc.gov/zing/srw/diagnostic/" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://www.loc.gov/zing/srw/" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.loc.gov/zing/cql/xcql/"/>
+   <import namespace="http://www.loc.gov/zing/srw/diagnostic/"/>
+   <complexType name="requestType">
+    <sequence>
+     <element name="version" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="searchRetrieveRequestType">
+    <complexContent>
+     <extension base="tns1:requestType">
+      <sequence>
+       <element name="query" type="xsd:string"/>
+       <element maxOccurs="1" minOccurs="0" name="startRecord" type="xsd:anyType"/>
+       <element maxOccurs="1" minOccurs="0" name="maximumRecords" type="xsd:anyType"/>
+       <element maxOccurs="1" minOccurs="0" name="recordPacking" type="xsd:anyType"/>
+       <element maxOccurs="1" minOccurs="0" name="resultSetTTL" type="xsd:anyType"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="searchRetrieveRequestElement" type="tns1:searchRetrieveRequestType"/>
+    <complexType name="responseType">
+    <sequence>
+     <element name="version" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="recordType">
+    <sequence>
+     <element name="recordSchema" type="xsd:string"/>
+     <element name="recordPacking" type="xsd:string"/>
+     <element name="recordData" type="xsd:string"/>
+     <element maxOccurs="1" minOccurs="0" name="recordPosition" type="xsd:positiveInteger"/>
+    </sequence>
+   </complexType>
+   <complexType name="recordsType">
+    <sequence>
+     <element maxOccurs="unbounded" name="record" type="tns1:recordType"/>
+    </sequence>
+   </complexType>
+   <complexType name="searchRetrieveResponseType">
+    <complexContent>
+     <extension base="tns1:responseType">
+      <sequence>
+       <element name="numberOfRecords" type="xsd:integer"/>
+       <element maxOccurs="1" minOccurs="0" name="resultSetId" type="xsd:string"/>
+       <element maxOccurs="1" minOccurs="0" name="resultSetIdleTime" type="xsd:integer"/>
+       <element maxOccurs="1" minOccurs="0" name="records" type="tns1:recordsType"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <element name="searchRetrieveResponseElement" type="tns1:searchRetrieveResponseType"/>
+   </schema>
+</wsdl:types>
+<wsdl:message name="searchRetrieveRequest">
+    <wsdl:part name="searchRetrieveRequest" element="tns1:searchRetrieveRequestElement"/>
+</wsdl:message>
+
+<wsdl:message name="searchRetrieveResponse">
+  <wsdl:part name="searchRetrieveResponse" element="tns1:searchRetrieveResponseElement"/>
+</wsdl:message>
+
+<wsdl:portType name="SrwPort">
+  <wsdl:operation name="searchRetrieve" parameterOrder="searchRetrieveRequest">
+    <wsdl:input name="searchRetrieveRequest" message="impl:searchRetrieveRequest"/>
+    <wsdl:output name="searchRetrieveResponse" message="impl:searchRetrieveResponse"/>
+  </wsdl:operation>
+</wsdl:portType>
+
+<wsdl:binding name="SrwBinding" type="impl:SrwPort">
+  <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <wsdl:operation name="searchRetrieve">
+    <wsdlsoap:operation soapAction=""/>
+    <wsdl:input name="searchRetrieveRequest">
+            <wsdlsoap:body use="literal"/>
+    </wsdl:input>
+    <wsdl:output name="searchRetrieveResponse">
+            <wsdlsoap:body use="literal"/>
+    </wsdl:output>
+  </wsdl:operation>
+</wsdl:binding>
+
+<wsdl:service name="SrwService">
+  <wsdl:port name="SrwPort" binding="impl:SrwBinding">
+    <wsdlsoap:address
+    location="@@@@@@@@@@@"/>
+  </wsdl:port>
+</wsdl:service>
+
+</wsdl:definitions>
