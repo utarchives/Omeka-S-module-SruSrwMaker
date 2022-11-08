@@ -2,7 +2,7 @@
 namespace SruSrwMaker\Controller\Admin;
 
 use SruSrwMaker\CsvFile;
-use SpecialCharacterSearch\Form\ImportForm;
+use SruSrwMaker\Form\ImportForm;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 
@@ -18,6 +18,9 @@ class IndexController extends AbstractActionController
         $view = new ViewModel();
         $form = $this->getForm(ImportForm::class);
         $view->form = $form;
+        $response = $this->api()->search('srw_maps', ['sort_by' => 'id', 'sort_order' => 'asc']);
+        $maps = $response->getContent();
+        $view->setVariable('maps', $maps);
         return $view;
     }
     public function mapImportAction()

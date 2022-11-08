@@ -1,0 +1,8 @@
+ローカルプロパティ(prefix:name),標準プロパティ(prefix:name)
+dcterms:title,dcterms:title
+dcterms:identifier,dcterms:identifier
+dcterms:creator,dcterms:creator
+dcterms:date,dcterms:date
+dcterms:language,dcterms:language
+dcterms:relation,dcterms:identifier
+dcterms:subject,dcterms:subject
