@@ -24,7 +24,7 @@ return [
         'translation_file_patterns' => [
             [
                 'type' => 'gettext',
-                'base_dir' => OMEKA_PATH . '/modules/SpecialCharacterSearch/language',
+                'base_dir' => OMEKA_PATH . '/modules/SruSrwMaker/language',
                 'pattern' => '%s.mo',
                 'text_domain' => null,
             ],

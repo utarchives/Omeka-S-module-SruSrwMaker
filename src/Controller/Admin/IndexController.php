@@ -2,7 +2,7 @@
 namespace SruSrwMaker\Controller\Admin;
 
 use SruSrwMaker\CsvFile;
-use SpecialCharacterSearch\Form\ImportForm;
+use SruSrwMaker\Form\ImportForm;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 
