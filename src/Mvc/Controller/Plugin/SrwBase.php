@@ -31,6 +31,7 @@ class SrwBase
         $this->termKey['publisher'] = $this->getLocalProperty('publisher');
         $this->termKey['date'] = $this->getLocalProperty('date');
         $this->compareKey['equal'] = '=';
+        $this->compareKey['equal2'] = ' = ';
         $this->compareKey['all'] = ' all ';
         $this->compareKey['any'] = ' any ';
         $this->joinerKey['and'] = 'and';
@@ -157,6 +158,9 @@ class SrwBase
         if ($maximumRecords) {
             $params['limit'] = $maximumRecords;
         }
+        if (!$this->identity) {
+            $params['is_public'] = 1;
+        }
         return $params;
     }
     protected function getTermKey($value)
@@ -214,9 +218,9 @@ class SrwBase
                 foreach ($item->values()[$map->localProperty()]['values'] as $value) {
                     $term = str_replace('dcterms', 'dc', $map->standardProperty());
                     if (strcmp($value->type() , 'uri') == 0) {
-                        $schemaNode->addChild($term, $value->uri());
+                        $schemaNode->addChild($term, htmlspecialchars($value->uri(), ENT_QUOTES, 'UTF-8'));
                     } else if (strcmp($value->type(), 'literal') == 0) {
-                        $schemaNode->addChild($term, $value->value());
+                        $schemaNode->addChild($term, htmlspecialchars($value->value(), ENT_QUOTES, 'UTF-8'));
                     }
                 }
             }
