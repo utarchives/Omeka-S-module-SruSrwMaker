@@ -158,9 +158,11 @@ class SrwBase
         if ($maximumRecords) {
             $params['limit'] = $maximumRecords;
         }
+        /*
         if (!$this->identity) {
             $params['is_public'] = 1;
         }
+        */
         return $params;
     }
     protected function getTermKey($value)
