@@ -1,6 +1,6 @@
 # SruSrwMaker
 
-SruSrw
+SRU/SRW対応モジュール
 
 ## Installation
 
